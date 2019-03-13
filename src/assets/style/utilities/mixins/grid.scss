@@ -1,0 +1,22 @@
+// --------------------------------------------------
+// Grid shortcuts  
+// --------------------------------------------------
+
+//grid
+//参阅：https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout
+.grid-base{
+  display: grid;
+}
+
+//宫格布局
+//$func       ----- grid-palace
+//$params
+//$col-num    ----- 行宫格个数
+//$row-num    ----- 列宫格个数
+//$grid-gap   ----- 宫格间隙大小
+@mixin grid-palace($col-num,$row-num:$col-num,$grid-gap:10px){
+  @extend .grid-base;
+  grid-gap: $grid-gap;
+  grid-template-columns: repeat($col-num,1fr);
+  grid-template-rows: repeat($row-num,1fr);
+}

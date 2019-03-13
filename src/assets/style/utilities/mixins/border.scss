@@ -1,0 +1,98 @@
+// --------------------------------------------------
+// Border shortcuts  
+// --------------------------------------------------
+
+
+//
+// Border
+//
+
+//边框线
+//$func       ----- border
+//$param      ----- $style（solid,dashed,dotted....）
+@mixin border($width: 1px,$style: solid,$color: #DDDFE6){
+  border: $width $style $color;
+}
+
+//border盒模型
+@mixin border-box{
+  box-sizing: border-box;
+}
+
+//各方位边框线
+//$func       ----- border-line
+//$params
+//$direction  ----- up,down,left,down
+//$style      ----- solid,dashed,dotted....
+
+//默认下划线
+@mixin border-line($direction: down,$color: #DDDFE6,$width: 1px,$style: solid){
+  @if ($direction=down) {    // 下划线
+    border-bottom-color: $color;
+    border-bottom-style: $style;
+    border-bottom-width: $width;
+  }@else if($direction=up){   //上划线
+    border-top-color: $color;
+    border-top-style: $style;
+    border-top-width: $width;
+  }@else if($direction=left){
+    border-left-color: $color;
+    border-left-style: $style;
+    border-left-width: $width;
+  }@else{
+    border-right-color: $color;
+    border-right-style: $style;
+    border-right-width: $width;
+  }
+}
+
+
+//
+// Border-radius
+//
+
+//圆形
+//$func       ----- round
+//$param      ----- $radius（数字，百分比）
+@mixin border-round($radius){
+  border-radius: $radius;
+}
+
+//圆形
+@mixin border-circle{
+  border-radius: 50%;
+}
+
+
+//
+// Caret-----三角形符号
+//
+
+//三角形符号，对话框
+//$func       ----- caret
+//$param      ----- $direction（up,down,left,down）
+
+@mixin caret($direction: down,$caret-width){
+  @if($direction=down){   //下三角
+    border-top: $caret-width solid;
+    border-right: $caret-width solid transparent;
+    border-bottom: 0;
+    border-left: $caret-width solid transparent;
+  }@else if($direction=up){  //上三角
+    border-top: 0;
+    border-right: $caret-width solid transparent;
+    border-bottom: $caret-width solid;
+    border-left: $caret-width solid transparent;
+  }@else if($direction=left){   //左三角
+    border-top: $caret-width solid transparent;
+    border-right: $caret-width solid;
+    border-bottom: $caret-width solid transparent;
+  }@else{   //右三角
+    border-top: $caret-width solid transparent;
+    border-right: 0;
+    border-bottom: $caret-width solid transparent;
+    border-left: $caret-width solid;
+  }
+   
+}
+

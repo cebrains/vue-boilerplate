@@ -1,0 +1,56 @@
+// --------------------------------------------------
+// Flex shortcuts  
+// --------------------------------------------------
+
+//flex
+//参阅：https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex
+.flex-base{
+  display: flex;
+}
+
+//flex居中
+.flex-center{
+  @extend .flex-base;
+  align-items: center;
+  justify-content: center;
+}
+
+//flex布局
+//$func       ----- flex-justify
+//
+//$params
+//$direction  ----- row,row-reverse,column,column-reverse
+//$justify    ----- flex-start,center,flex-end,space-around,space-between,space-around
+//$align      ----- flex-start,center,flex-end
+//flex-wrap   ----- wrap,nowrap
+@mixin flex-justify($direction: row,$justify: flex-start,$align: start,$wrap: nowrap){
+  @extend .flex-base;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+
+//flex子元素伸缩值
+//flex布局
+//$func       ----- flex-value
+//$param      ----- $value（支持数字、百分比及px）
+@mixin flex-value($value){
+  flex: $value;
+}
+
+//flex子元素固定宽高
+//$func       ----- flex-value-fixed
+//$param      ----- $value（支持小数、百分数、px 、分数）
+@mixin flex-value-fixed($value){
+  flex: 0 0 $value;
+}
+
+
+
+
+
+
+
+

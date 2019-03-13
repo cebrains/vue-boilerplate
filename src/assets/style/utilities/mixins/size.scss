@@ -1,0 +1,14 @@
+// --------------------------------------------------
+// Size shortcuts  
+// --------------------------------------------------
+
+//矩形
+@mixin wh($width:100%,$height:100%) {
+  width: $width;
+  height: $height;
+}
+
+//正方形
+@mixin square($size) {
+  @include wh($size,$size);
+}

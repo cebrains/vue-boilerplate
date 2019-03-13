@@ -1,0 +1,22 @@
+// --------------------------------------------------
+// Shadow shortcuts  
+// --------------------------------------------------
+
+//
+// Shadow
+//
+$shadow-color           : rgba(0, 0, 0, .15);
+
+//默认下阴影
+@mixin box-shadow($direction: down,$color: $shadow-color){
+  @if($direction=down){
+    box-shadow: 0 2px 8px $color;
+  }@else if($direction=up){   //上阴影
+    box-shadow: 0 -2px 8px $color;
+  }@else if($direction=left){   //左阴影
+    box-shadow: -2px 0 8px $color;
+  }@else{    //右阴影
+    box-shadow: 2px 0 8px $color;
+  }
+}
+

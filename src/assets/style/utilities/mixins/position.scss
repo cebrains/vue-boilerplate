@@ -1,0 +1,63 @@
+// --------------------------------------------------
+// Position shortcuts  
+// --------------------------------------------------
+
+//参阅：https://developer.mozilla.org/zh-CN/docs/Web/CSS/position
+
+$mask-color           : lighten(#000000,80%);
+
+//全屏遮罩
+//$func       ----- pos-mask
+//$params
+//$zIndex     ----- 数字
+//$bgColor    ----- 包含默认色，可传入
+@mixin pos-mask($zIndex: 999,$bgColor: $mask-color){
+  position: fixed;
+	left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+	z-index: $zIndex;
+	overflow: hidden;
+	background-color: $bgColor;
+}
+
+//子元素定位相关
+@mixin pos($left: 0,$top: 0) {
+  position: absolute;
+  left: $left;
+  top: $top;
+}
+
+//子元素居中定位
+//$tip        ----- 相对于父元素
+//$func       ----- pos-center
+//$params     ----- $direction（row,col,both）
+
+//居中
+@mixin pos-center($direction:both){
+  @if($direction=both){
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }@else if($direction=row){
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+  }@else{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+}
+
+//粘性定位
+@mixin pos-sticky($zIndex: 999){
+  position: sticky;
+  top: 0;
+  z-index: $zIndex;
+}
+

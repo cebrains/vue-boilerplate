@@ -1,0 +1,18 @@
+// --------------------------------------------------
+// Background shortcuts  
+// --------------------------------------------------
+
+//背景图片
+//$func       ----- bg-img
+//$param      ----- $size（contain,cover,auto,px...）
+@mixin bg-img($url,$size:cover) {
+	background: url($url) no-repeat 50%;
+  background-size: $size;
+}
+
+//背景颜色
+@mixin bg-color($color){
+  background-color: $color;
+}
+
+

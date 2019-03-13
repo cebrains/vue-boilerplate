@@ -1,0 +1,24 @@
+// --------------------------------------------------
+// Display shortcuts  
+// --------------------------------------------------
+
+//元素是否显示
+//$func       ----- visible
+//$param      ----- $display（show,hide）
+
+//显示元素
+@mixin visible($display){
+  @if($display=show){
+    visibility: visible;
+  }@else if($display=hide){
+    visibility: hidden;
+  }
+}
+
+//元素显示类型
+//$func       ----- display-type
+//$param      ----- $type（block,none,flex,grid,inline-block...）
+@mixin display-type($type){
+  display: $type;
+}
+

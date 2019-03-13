@@ -1,0 +1,47 @@
+// --------------------------------------------------
+// Text shortcuts  
+// --------------------------------------------------
+
+//文字大小及颜色
+@mixin text-sc($size: 14px, $color: #606266){
+	font-size: $size;
+	color: $color;
+}
+
+//文字行高及居中
+//$func       ----- text-align
+//$param      ----- $align（left,right,center）
+@mixin text-align($height:100%,$align: left, $lineHeight: $height){
+  height: $height;
+  text-align: $align;
+  line-height: $lineHeight;
+}
+
+//文字缩进
+@mixin text-indent($indent){
+  text-indent: $indent;
+}
+
+//文字间距
+@mixin text-space($space){
+  letter-spacing: $space;
+}
+
+//文字截断（超出隐藏）
+@mixin text-truncate($width){
+  width: $width;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+
+
+
+
+
+
+
+

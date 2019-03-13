@@ -1,0 +1,26 @@
+// --------------------------------------------------
+// Variables ----- constant  
+// --------------------------------------------------
+
+//font-size
+$mk-font-size-base         : 14px;
+$mk-font-size-lg           : $mk-font-size-base + 2px;
+$mk-font-size-xl           : $mk-font-size-base + 4px;
+$mk-font-size-sm           : 12px;
+$mk-font-size-xs           : 10px;
+
+//line-height
+$mk-line-height-base       : 1.5;
+
+//border-radius
+$mk-border-radius-base     : 4px;
+$mk-border-radius-sm       : 2px;
+
+//vertical-paddings
+$mk-padding-lg             : 24px;
+$mk-padding-md             : 16px;
+$mk-padding-sm             : 12px;
+$mk-padding-xs             : 8px;
+
+//link
+$mk-link-color             : $mk-color-info;
