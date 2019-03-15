@@ -1,9 +1,11 @@
 
 
+
+// @ is an alias to /src
+
 //登录页
-const Login = r => require.ensure([], () => r(require('@/pages/login')), 'Login');
-//录音单条
-const RecordingSingle = r => require.ensure([], () => r(require('@/pages/work/components/recordingPlay.vue')), 'Recording');
+const Login = r => require.ensure([], () => r(require('@/views/login/index.vue')), 'Login');
+
 
 export default [
   {
@@ -14,14 +16,5 @@ export default [
       title: 'TMS - 登录'
     }
   },
-  //单条录音
-  {
-    path: '/recording-single',
-    name: 'RecordingSingle',
-    component: RecordingSingle,
-    meta: {
-      title: 'TMS - 录音',
-      target:'_blank'
-    }
-  },
+  
 ]

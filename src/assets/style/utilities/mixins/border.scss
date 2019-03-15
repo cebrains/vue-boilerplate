@@ -26,8 +26,8 @@
 //$style      ----- solid,dashed,dotted....
 
 //默认下划线
-@mixin border-line($direction: down,$color: #DDDFE6,$width: 1px,$style: solid){
-  @if ($direction=down) {    // 下划线
+@mixin border-line($direction:down,$color:#DDDFE6,$width: 1px,$style: solid){
+  @if $direction=down {    // 下划线
     border-bottom-color: $color;
     border-bottom-style: $style;
     border-bottom-width: $width;
@@ -72,7 +72,7 @@
 //$func       ----- caret
 //$param      ----- $direction（up,down,left,down）
 
-@mixin caret($direction: down,$caret-width){
+@mixin caret($direction: down,$caret-width:0){
   @if($direction=down){   //下三角
     border-top: $caret-width solid;
     border-right: $caret-width solid transparent;
