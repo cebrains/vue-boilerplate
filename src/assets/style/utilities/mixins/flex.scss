@@ -23,7 +23,7 @@
 //$justify    ----- flex-start,center,flex-end,space-around,space-between,space-around
 //$align      ----- flex-start,center,flex-end
 //flex-wrap   ----- wrap,nowrap
-@mixin flex-justify($direction: row,$justify: flex-start,$align: start,$wrap: nowrap){
+@mixin flex($direction: row,$justify: flex-start,$align: start,$wrap: nowrap){
   @extend .flex-base;
   flex-direction: $direction;
   justify-content: $justify;
@@ -31,6 +31,21 @@
   flex-wrap: $wrap;
 }
 
+
+@mixin flex-direction($direction: row){
+  @extend .flex-base;
+  flex-direction: $direction;
+}
+
+@mixin flex-justify($justify: center){
+  @extend .flex-base;
+  justify-content: $justify;
+}
+
+@mixin flex-align($align: center){
+  @extend .flex-base;
+  align-items: $align;
+}
 
 //flex子元素伸缩值
 //flex布局

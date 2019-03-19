@@ -1,5 +1,4 @@
-
-
+const path = require('path');
 
 module.exports = {
   chainWebpack: config => {
@@ -12,7 +11,17 @@ module.exports = {
       // 对不同的环境进行不同的操作
 
     }
-  }
+  },
 
-  
+  pluginOptions: {
+    'style-resources-loader': {
+      preProcessor: 'scss',
+      patterns: [
+        path.resolve(__dirname,'src/assets/style/common/index.scss'),
+        path.resolve(__dirname, 'src/assets/style/utilities/index.scss'),
+        path.resolve(__dirname, 'src/assets/style/theme/index.scss'),
+        path.resolve(__dirname,'src/assets/style/animation/index.scss')
+      ]
+    }
+  }
 }
