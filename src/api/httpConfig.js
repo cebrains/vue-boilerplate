@@ -2,7 +2,7 @@
 
 import Axios from 'axios';
 import Env from './env';
-
+import { Message } from 'element-ui';
 
 const config = {
     // 请求类型，默认get
@@ -68,6 +68,21 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(res => {
     return res;
 }, error => {
+     // 断网 或者 请求超时 状态
+  if (!error.response) {
+    // 请求超时状态
+    if (error.message.includes('timeout')) {
+      console.log('超时了');
+      Message.error('请求超时，请检查网络是否连接正常')
+
+    } else {
+      // 可以展示断网组件
+      console.log('断网了')
+      Message.error('请求失败，请检查网络是否已连接')
+    }
+    return
+  }
+
     return Promise.reject(error);
 });
 export default axios;

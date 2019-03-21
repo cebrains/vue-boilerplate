@@ -136,6 +136,7 @@ export default {
     height: 100%;
 		@include flex($direction: row,$justify: center,$align: center,$wrap: nowrap);
 		.menuBar {
+      background: #3E4455;
       overflow-x: hidden;
       width: 200px;
       height: 100%;
