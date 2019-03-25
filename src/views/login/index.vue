@@ -87,7 +87,7 @@ export default {
           username: this.username,
           passwd: this.password
         }
-        loginService.getLogon(params).then(res=>{
+        loginService.getLogin(params).then(res=>{
           if(res.code == 200){
             this.$router.replace('/');
           }

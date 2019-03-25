@@ -66,6 +66,7 @@ const httpRequest = ({
                 ...conf,
             })
             .then(res => {
+                let code = res.data.code; // 这里是后台返回的状态码，根据业务不同可修改
                 // token都通过headers传输，如果response的headers里有token值，则表示为最新的token并同步更新存储；
                 if (res.headers['authentication-info']) {
                     storage.setSessionStorage(tokenKey, res.headers['authentication-info']);
@@ -75,12 +76,19 @@ const httpRequest = ({
                 if ( conf.responseType === 'blob' ) {
                     resolve(res);
                 } else {
-                    if (res.data.code === 200) {
+                    if(res.data.code === 200) {
                         //store.dispatch('authAction', !!1);
                         resolve(res.data);
-                    } else if (res.data.code === 500) {
-                        Message({ message: '服务器异常', type: 'error' });
-                        reject();
+                    }else if(code === 307){
+						router.replace('/noAuth');
+                    }else if(code === 400){
+						router.replace('/login');
+					}else if (code === 401) { 
+						router.replace('/loginExpired');
+					} else if(code == 402){
+						router.replace('/authChange');
+					}else if (code === 403) {
+                        router.replace('/noPermission');
                     } else {
                         resolve(res.data);
                     }
@@ -88,36 +96,20 @@ const httpRequest = ({
             })
             .catch(error => {
                  if (error.response) {
-					let code = error.response.status;
-                    if(code === 401){
-						router.replace('/login');
-					}else if (code === 401) { 
-						reject(error);
-						router.replace('/loginExpired');
-					} else if(code == 402){
-						reject(error);
-						router.replace('/authChange');
-					}else if (code === 403) {
-                        reject(error);
-                        router.replace('/noPermission');
-                    } else if (code === 404) {
+                    let status = error.response.status; // 这里是服务器的层级的http状态码
+                    if (status === 404) {
                         Message({ message: '请求的数据不存在', type: 'error' });
                         reject(error);
-					} else if(code===307){
-						reject(error);
-						router.replace('/noAuth');
-					}else {
+                    } else if (status === 500) {
+                        Message({ message: '服务器异常', type: 'error' });
+                        reject();
+                    } else {
                         reject(error);
                     }
                 } else if (error.request) {
-                  // The request was made but no response was received
-                  // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                  // http.ClientRequest in node.js
-                 // console.warn(error.request);
                   Message({ message: '请求失败，服务未响应', error: 'error' });
                   reject(error);
                 } else {
-                  // Something happened in setting up the request that triggered an Error
                   reject(error);
                 }
             })

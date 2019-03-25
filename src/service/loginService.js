@@ -5,8 +5,12 @@
 import HttpRequest from '../api/httpRequest';
 
 const LOGIN_SERVICE = {
+  //获取登录状态
+  getLoginStatus: function() {
+    return HttpRequest({method:"get",url:"/site/login"});
+  },
   //用户登录操作
-  getLogon: function(params) {
+  getLogin: function(params) {
     return HttpRequest({ method:'post', url:'/site/logon', data:params});
   },
   

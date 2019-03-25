@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="isShow">
     <header class="header">
       <div class="header-left">
 				<div class="sysName">教师管理后台</div>
@@ -73,9 +73,12 @@
 </template>
 
 <script>
-
+import { mapGetters,mapActions,mapMutations } from 'vuex';
+import homeService from '../../service/homeService';
+import loginService from '../../service/loginService';
 
 export default {
+  
   name: 'home',
   components: {
   
@@ -83,13 +86,69 @@ export default {
   data() {
     return {
 			routerKey:0,
-			activeIndex:'/'
+      activeIndex:'/',
+      isShow: true,
+      isLogin:true,
     }
   },
+  computed:{
+    ...mapGetters({
+      username:'fetch_username',
+      avatar:'fetch_avatar',
+      menuList:'fetch_menuList',
+      permitted:'fetch_permitted'
+    })
+  },
   created(){
+    this.getLoginStatus();
+    //this.getMenuList()
    
   },
   methods:{
+    ...mapActions([
+      'fetchUserInfo',
+      'fetchMenuList',
+    ]),
+    getMenuList(){
+       homeService.getUserInfo().then(res=>{
+         console.log(99,res)
+        //commit("update_userInfo",res.data)   //store.commit可传入额外的参数，即mutation的载荷（payload）
+      }).catch(error=>{
+        Message.error({
+          message: error.data.msg,
+          center: true,
+          duration:1500
+        })
+      })
+
+    },
+    getLoginStatus(){
+      loginService.getLoginStatus().then(res=>{
+       if(res.code == 200){
+          this.isLogin = true;
+          Promise.all([this.fetchUserInfo(),this.fetchMenuList()]).then(response=>{
+            this.isShow = true;
+          }).catch(err=>{
+            console.log(err)
+          })
+        }
+       
+      }).catch(error=>{
+        console.log('catch',error)
+        this.msgTip(error.data.msg)
+
+      })
+
+
+    },
+    msgTip(errorMessage) {
+      this.$message.error({
+        message: errorMessage,
+        center: true,
+        duration:1500,
+      })
+    },
+   
     goLogin(){
       this.$router.push('/login');
         

@@ -40,15 +40,11 @@ const config = {
     // `xsrfHeaderName` is the name of the http header that carries the xsrf token value
     xsrfHeaderName: 'X-XSRF-TOKEN', // default
 
-    // // `onUploadProgress` allows handling of progress events for uploads
-    // onUploadProgress: function (progressEvent) {
-    // // Do whatever you want with the native progress event
-    // },
-
-    // // `onDownloadProgress` allows handling of progress events for downloads
-    // onDownloadProgress: function (progressEvent) {
-    // // Do whatever you want with the native progress event
-    // },
+    // `validateStatus` 定义对于给定的HTTP 响应状态码是 resolve 或 reject  promise 。
+    //如果 `validateStatus` 返回 `true` (或者设置为 `null` 或 `undefined`)，promise 将被 resolve; 否则，promise 将被 rejecte
+    validateStatus: function (status) {
+      return status >= 200 && status < 300; // 默认的  注意这里是服务器层级的http状态码 不是后台的状态码
+    },
 
 
 }
@@ -69,19 +65,19 @@ axios.interceptors.response.use(res => {
     return res;
 }, error => {
      // 断网 或者 请求超时 状态
-  if (!error.response) {
-    // 请求超时状态
-    if (error.message.includes('timeout')) {
-      console.log('超时了');
-      Message.error('请求超时，请检查网络是否连接正常')
+	if (!error.response) {
+		// 请求超时状态
+		if (error.message.includes('timeout')) {
+		console.log('超时了');
+		Message.error('请求超时，请检查网络是否连接正常')
 
-    } else {
-      // 可以展示断网组件
-      console.log('断网了')
-      Message.error('请求失败，请检查网络是否已连接')
-    }
-    return
-  }
+		} else {
+		// 可以展示断网组件
+		console.log('断网了')
+		Message.error('请求失败，请检查网络是否已连接')
+		}
+		return
+	}
 
     return Promise.reject(error);
 });
