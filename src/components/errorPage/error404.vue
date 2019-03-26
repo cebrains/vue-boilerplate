@@ -3,7 +3,7 @@
     <section>
         <div class="error-content">
             <dl>
-                <dt class="error-img"><img src="../assets/images/404.png" /></dt>
+                <dt class="error-img"><img src="../../assets/images/404.png" /></dt>
                 <dd class="error-msg">哎呀，您访问的页面正在搭建～</dd>
                 <dd class="error-btn"><button @click="btnClick">返回首页</button></dd>
             </dl>
@@ -27,7 +27,7 @@
 
 </script>
 
-<style lang="less">
+<style lang="scss">
     .error-content{
         position: fixed;
         top: 0;
