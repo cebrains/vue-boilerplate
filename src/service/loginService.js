@@ -13,6 +13,10 @@ const LOGIN_SERVICE = {
   getLogin: function(params) {
     return HttpRequest({ method:'post', url:'/site/logon', data:params});
   },
+  //用户注销
+  getLogout:function(){
+    return HttpRequest({method:"get",url:"/site/logout"});
+  }
   
 }
 export default LOGIN_SERVICE;

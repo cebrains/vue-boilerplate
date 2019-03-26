@@ -82,7 +82,7 @@ export default {
       }
 
       if(this.username && this.password){
-         this.isClickable = true;
+        this.isClickable = true;
         let params = {
           username: this.username,
           passwd: this.password

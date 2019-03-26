@@ -5,12 +5,15 @@
 				<div class="sysName">教师管理后台</div>
 			</div>
        <div class="header-right">
-				  <button class="login-btn"  @click="goLogin"> 登 录</button>
+         <span class="userName" v-if="isLogin">{{username}}</span>
+				  <button class="login-btn"  v-if="!isLogin" @click="goLogin">登录</button>
+          <button class="logout-btn" v-if="isLogin"  @click="goLogout">登出</button>
 				</div>
     </header>
     <div class="content">
       <aside class="menuBar">
-        <el-menu :default-openeds="['1']"
+        <el-menu  class="verticalMenu"
+          :default-openeds="['1']"
 					router
 					:default-active="activeIndex"
 					background-color="#3E4455"
@@ -101,7 +104,6 @@ export default {
   },
   created(){
     this.getLoginStatus();
-    //this.getMenuList()
    
   },
   methods:{
@@ -111,8 +113,7 @@ export default {
     ]),
     getMenuList(){
        homeService.getUserInfo().then(res=>{
-         console.log(99,res)
-        //commit("update_userInfo",res.data)   //store.commit可传入额外的参数，即mutation的载荷（payload）
+        //console.log(99,res)
       }).catch(error=>{
         Message.error({
           message: error.data.msg,
@@ -152,6 +153,17 @@ export default {
     goLogin(){
       this.$router.push('/login');
         
+    },
+    goLogout(){
+      loginService.getLogout().then(res=>{
+        if(res.code==200){
+          this.isLogin = false;
+          this.$router.replace('/login');
+        }
+      }).catch(error=>{
+        this.errorTip(error.data.msg);
+      })
+        
     }
 
   }
@@ -178,16 +190,24 @@ export default {
       }
 		}
 		.header-right{
+      font-size: 14px;
+      @include flex($direction: row,$justify: center,$align: center,$wrap: nowrap);
 			margin-right:20px;
-			.login-btn{
-				padding: 0 20px;
-				height: 40px;
-        line-height: 40px;
-				font-size: 16px;
-				border:solid 1px #3B8CFF;
-				border-radius: 10px;
-				cursor: pointer;
-			}
+			.login-btn,.logout-btn{
+        height: 30px;
+        line-height: 30px;
+				padding: 0 15px;
+        cursor: pointer;
+        color: #409EFF;
+        background: #ecf5ff;
+        border: solid 1px #b3d8ff;
+        border-radius: 4px;
+      }
+      .userName{
+        font-size: 13px;
+        padding-right: 20px;
+      }
+    
 		}
   }
   .content{
@@ -195,12 +215,12 @@ export default {
     height: 100%;
 		@include flex($direction: row,$justify: center,$align: center,$wrap: nowrap);
 		.menuBar {
-      background: #3E4455;
+      background: $mk-bg-grey ;
       overflow-x: hidden;
       width: 200px;
       height: 100%;
       overflow-y: auto;
-      display: flex;
+      @extend .flex-base;
       flex-shrink: 0;
       .verticalMenu {
         height: 100%;
@@ -212,7 +232,7 @@ export default {
 		}
 		main{
       height: 100%;
-      flex:1;
+      @include flex-value(1);
       flex-shrink: 0;
       overflow: auto;
       &.homeBg{
