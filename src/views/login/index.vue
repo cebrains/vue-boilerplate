@@ -2,7 +2,7 @@
   <div class="container">
     <div class="main">
        <div class="header">
-        <img class="icon-logo" src="../../assets/images/icon_logo.png">
+        <img class="icon-logo" src="../../assets/images/logo.png">
         <h1>教师管理后台</h1>
       </div>
       <section class="content">
@@ -156,13 +156,13 @@ export default {
         width: 350px;
         height: 40px;
         border-radius: 4px;
-        background: #fd5e01; 
+        background:$mk-color-green; 
         color: $mk-color-white ;
         display: flex;
         align-items: center;
         justify-content: center;
         &.active{
-          background: $mk-bg-orange ;
+          background: rgb(41, 124, 80);
         }
         span{
           font-size: 18px;
