@@ -1,3 +1,4 @@
+
 <template>
   <div class="container" v-if="isShow">
     <header class="header">
@@ -6,8 +7,8 @@
 			</div>
        <div class="header-right">
          <span class="userName" v-if="isLogin">{{username}}</span>
-				  <button class="login-btn"  v-if="!isLogin" @click="goLogin">登录</button>
-          <button class="logout-btn" v-if="isLogin"  @click="goLogout">登出</button>
+         <button class="login-btn"  v-if="!isLogin" @click="goLogin">登录</button>
+         <button class="logout-btn" v-if="isLogin"  @click="goLogout">登出</button>
 				</div>
     </header>
     <div class="content">
@@ -76,7 +77,7 @@
 </template>
 
 <script>
-import { mapGetters,mapActions,mapMutations } from 'vuex';
+import { mapGetters,mapActions } from 'vuex';
 import homeService from '../../service/homeService';
 import loginService from '../../service/loginService';
 
@@ -113,13 +114,9 @@ export default {
     ]),
     getMenuList(){
        homeService.getUserInfo().then(res=>{
-        //console.log(99,res)
+        console.log(11,res)
       }).catch(error=>{
-        Message.error({
-          message: error.data.msg,
-          center: true,
-          duration:1500
-        })
+        this.msgTip(error.data.msg)
       })
 
     },
@@ -128,6 +125,7 @@ export default {
        if(res.code == 200){
           this.isLogin = true;
           Promise.all([this.fetchUserInfo(),this.fetchMenuList()]).then(response=>{
+            console.log(22,response)
             this.isShow = true;
           }).catch(err=>{
             console.log(err)
@@ -135,7 +133,6 @@ export default {
         }
        
       }).catch(error=>{
-        console.log('catch',error)
         this.msgTip(error.data.msg)
 
       })

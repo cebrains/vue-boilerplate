@@ -6,7 +6,7 @@ export const storage = {
     // sessionStorage
     getSessionStorage: function (key) {
         let val = this.deserializeStorage(sessionStorage.getItem(key));
-        return (val === undefined ? null : val);
+        return val === undefined ? null : val;
     },
     setSessionStorage: function (key, value) {
         if (this.getSessionStorage(key) !== null) {
@@ -24,7 +24,7 @@ export const storage = {
     // localStorage  
     getLocalStorage(key) {
         let val = this.deserializeStorage(localStorage.getItem(key));
-        return (val === undefined ? null : val);
+        return val === undefined ? null : val;
     },
     setLocalStorage(key, value) {
         if (this.getLocalStorage(key) !== null) {
