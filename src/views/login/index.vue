@@ -122,7 +122,7 @@ export default {
       .icon-logo{
         width:150px;
         height: 150px;
-        border-radius: 20%;
+        border-radius: 10%;
       }
        h1{
         display: block;
@@ -155,17 +155,15 @@ export default {
         margin-top: 40px;
         width: 350px;
         height: 40px;
-        border-radius: 4px;
+        border-radius: $mk-border-radius-base;
         background:$mk-color-green; 
         color: $mk-color-white ;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      	@include flex($direction: row,$justify: center,$align: center,$wrap: nowrap);
         &.active{
           background: rgb(41, 124, 80);
         }
         span{
-          font-size: 18px;
+          font-size:$mk-font-size-base+4px;
           font-weight: 400;
         }
       }
@@ -175,8 +173,8 @@ export default {
   .footer{
     width: 100%;
     margin-top: 20%;
-    text-align: center;
-    font-size: 16px;
+    @include text-align($align: center);
+    font-size:$mk-font-size-base+2px;
     font-weight: 300;
     height: 40px;
     span{

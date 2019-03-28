@@ -14,8 +14,8 @@ module.exports = {
   */
   rules: {
     /* 生产环境 不允许console，debugger */
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     "no-compare-neg-zero": 1,       // 禁止与-0进行比较
     "no-empty": 1,                  // 禁止空块语句
     "no-extra-boolean-cast": 1,     // 禁止不必要的布尔强制转换
@@ -33,7 +33,7 @@ module.exports = {
     "no-unused-expressions": 1,     // 禁止未使用的表达式
     "no-dupe-args": 1,              // 禁止function定义中的重复参数
     "no-mixed-spaces-and-tabs": 0,  //禁止使用混合空格和制表符进行缩进
-    "indent-legacy": 0            // 强制执行一致的缩进
+    "indent-legacy": 0              // 强制执行一致的缩进
   },
   parserOptions: {
     parser: 'babel-eslint'

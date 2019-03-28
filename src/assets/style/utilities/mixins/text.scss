@@ -8,10 +8,17 @@
 	color: $color;
 }
 
+//文字居中
+//$func       ----- text-align
+//$param      ----- $align（left）right,center
+@mixin text-align($align: center){
+  text-align: $align;
+}
+
 //文字行高及居中
 //$func       ----- text-align
 //$param      ----- $align（left,right,center）
-@mixin text-align($height:100%,$align: left, $lineHeight: $height){
+@mixin text-align-h($height:100%,$align: left, $lineHeight: $height){
   height: $height;
   text-align: $align;
   line-height: $lineHeight;

@@ -174,20 +174,20 @@ export default {
   .header{
 		@include flex($direction: row,$justify: space-between,$align: center,$wrap: nowrap);
 		.header-left {
-      display: flex;
+     @extend .flex-base;
       margin-left: 0;
       .sysName {
         width: 200px;
         height: 64px;
         line-height: 64px;
         font-size: 20px;
-        color: #fff;
-        background: #304156;
-        text-align: center;
+        color: $mk-color-white;
+        background: $mk-color-navigation-left;
+        @include text-align($align: center);
       }
 		}
 		.header-right{
-      font-size: 14px;
+      font-size:$mk-font-size-base;
       @include flex($direction: row,$justify: center,$align: center,$wrap: nowrap);
 			margin-right:20px;
 			.login-btn,.logout-btn{
@@ -195,10 +195,10 @@ export default {
         line-height: 30px;
 				padding: 0 15px;
         cursor: pointer;
-        color: #409EFF;
+        color: $mk-color-info;
         background: #ecf5ff;
         border: solid 1px #b3d8ff;
-        border-radius: 4px;
+        border-radius: $mk-border-radius-base ;
       }
       .userName{
         font-size: 13px;
