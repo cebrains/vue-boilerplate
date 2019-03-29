@@ -4,7 +4,7 @@
     <header class="header">
       <div class="header-left">
 				<div class="sysName">教师管理后台</div>
-			</div>
+			</div> 
        <div class="header-right">
          <span class="userName" v-if="isLogin">{{username}}</span>
          <button class="login-btn"  v-if="!isLogin" @click="goLogin">登录</button>
@@ -240,6 +240,7 @@ export default {
 
   }
 	
+
 }
 
 </style>
