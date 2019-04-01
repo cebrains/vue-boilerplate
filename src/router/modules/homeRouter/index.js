@@ -6,6 +6,7 @@
 const Home = r => require.ensure([], () => r(require('@/views/home/index')), 'Home');
 
 
+
 export default [
   //主页
   {

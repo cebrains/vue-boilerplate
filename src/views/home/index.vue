@@ -9,6 +9,10 @@
          <span class="userName" v-if="isLogin">{{username}}</span>
          <button class="login-btn"  v-if="!isLogin" @click="goLogin">登录</button>
          <button class="logout-btn" v-if="isLogin"  @click="goLogout">登出</button>
+         <div class="con">
+           <span class="item">111111</span>
+            <span class="item2">3333</span>
+         </div>
 				</div>
     </header>
     <div class="content">
@@ -168,6 +172,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .container{
 	width: 100%;
   height: 100%;
@@ -199,6 +204,12 @@ export default {
         background: #ecf5ff;
         border: solid 1px #b3d8ff;
         border-radius: $mk-border-radius-base ;
+        // @b con{
+        //   background: #ddd;
+        //   @e item{
+        //     color:#f00;
+        //   }
+        // }
       }
       .userName{
         font-size: 13px;
