@@ -15,7 +15,7 @@ const HOME_SERVICE = {
   },
   // 修改密码
   changePassword: function(params) {
-    return HttpRequest({method:"post", url:"/account/change-password",data:params});
+    return HttpRequest({method:"get", url:"/account/change-password",data:params});
   },
   
 }
