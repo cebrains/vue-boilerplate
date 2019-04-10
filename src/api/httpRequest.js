@@ -10,7 +10,7 @@ import router from '../router';
 //import store from '../store';
 import axios from './httpConfig';
 import { Message } from 'element-ui';
-import { storage } from '../util/storage';
+import Storage from '../util/storage';
 import Qs from 'qs';
 
 /**
@@ -49,7 +49,7 @@ const httpRequest = ({
 
     if (conf.authentication) {
         // 当前接口请求使用jwt认证方式
-        token = storage.getSessionStorage(tokenKey); // 先从本地尝试获取token;
+        token = Storage.session.get(tokenKey); // 先从本地尝试获取token;
         if ( token === 'undefined' || !token ) {
             token = '';
         }
@@ -70,7 +70,7 @@ const httpRequest = ({
                 let code = res.data.code; // 这里是后台返回的状态码，根据业务不同可修改
                 // token都通过headers传输，如果response的headers里有token值，则表示为最新的token并同步更新存储；
                 if (res.headers['authentication-info']) {
-                    storage.setSessionStorage(tokenKey, res.headers['authentication-info']);
+                    Storage.session.set(tokenKey, res.headers['authentication-info']);
                 }
                 // 判断请求的是json数据还是文件数据
                 // 如果是文件数据则返回整个response

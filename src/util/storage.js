@@ -12,7 +12,7 @@ let Storage = {
   const api = {
     get(key){
       let val = this.deserialize(this.storage.getItem(key));
-      return (val === undefined ? null : val)
+      return val === undefined ? null : val
     },
     set(key,value){
       if (this.storage.getItem(key) !== null) {
@@ -25,10 +25,6 @@ let Storage = {
     },
     hash(key){
       return this.get(key) !== undefined
-    },
-    getSessionStorage: function (key) {
-      let val = this.deserialize(sessionStorage.getItem(key));
-      return val === undefined ? null : val
     },
     clearAll(){
       this.storage.clear();
@@ -54,8 +50,7 @@ let Storage = {
     }
   }
   
-  
-  
+
   Object.assign(Storage.local, api);
   Object.assign(Storage.session, api);
   
